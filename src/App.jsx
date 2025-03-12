@@ -1,29 +1,30 @@
-import { useState } from "react";
 import Navbar from "./components/Navbar";
+import { Route, Routes } from "react-router-dom";
+import Home from "./pages/Home";
+import About from "./pages/About";
+import Contact from "./pages/Contact";
+import Service from "./pages/Service";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
+import Footer from "./components/Footer";
+import PageNotFound from "./pages/PageNotFound";
 
 const App = () => {
-  const [count, setCount] = useState(0);
-  const countCount = () => {
-    setCount(count + 1);
-    console.log(count);
-  }
   return (
     <>
-      <div className="flex gap-2">
-        <h1 className="font-bold text-xl ">{count}</h1>
-        <button className="p-2 bg-blue-500 rounded-md " onClick={countCount}>+</button>
-
-        {
-          count === 4 ?
-            <p>hello</p> : <p>hi</p>
-        }
-      </div>
-
-      {/* <Navbar /> */}
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/service" element={<Service />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="*" element={<PageNotFound />} />
+      </Routes>
+      <Footer />
     </>
-  )
-}
+  );
+};
 
-export default App
-
-
+export default App;
