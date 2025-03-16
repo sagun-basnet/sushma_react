@@ -1,5 +1,5 @@
 import Navbar from "./components/Navbar";
-import { Route, Routes } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
@@ -10,9 +10,36 @@ import Footer from "./components/Footer";
 import PageNotFound from "./pages/PageNotFound";
 
 const App = () => {
+  const Layout = () => {
+    return (
+      <>
+        <Navbar />
+        <Outlet />
+        <Footer />
+      </>
+    );
+  };
+
+  const routerLayout = createBrowserRouter([
+    {
+      path: "/",
+      element: <Layout />,
+      children: [
+        { path: "/", element: <Home /> },
+        { path: "/about", element: <About /> },
+        { path: "/contact", element: <Contact /> },
+        { path: "/service", element: <Service /> },
+      ],
+    },
+    { path: "/login", element: <Login /> },
+    { path: "/signup", element: <Signup /> },
+    { path: "*", element: <PageNotFound /> },
+  ]);
+
   return (
     <>
-      <Navbar />
+      <RouterProvider router={routerLayout} />
+      {/* <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
@@ -22,7 +49,7 @@ const App = () => {
         <Route path="/signup" element={<Signup />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
-      <Footer />
+      <Footer /> */}
     </>
   );
 };
