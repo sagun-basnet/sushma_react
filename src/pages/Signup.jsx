@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -9,7 +10,19 @@ const Signup = () => {
   });
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (formData.name === "") {
+      return console.log("Enter name");
+    }
+
     console.log(formData);
+    axios
+      .post("/api/signup", formData)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const handleChange = (e) => {

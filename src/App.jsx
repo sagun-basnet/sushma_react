@@ -8,6 +8,8 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Footer from "./components/Footer";
 import PageNotFound from "./pages/PageNotFound";
+import FetchApi from "./pages/FetchApi";
+import SinglePage from "./pages/SinglePage";
 
 const App = () => {
   const Layout = () => {
@@ -32,7 +34,9 @@ const App = () => {
       ],
     },
     { path: "/login", element: <Login /> },
+    { path: "/fetch-api", element: <FetchApi /> },
     { path: "/signup", element: <Signup /> },
+    { path: "product/:id", element: <SinglePage /> },
     { path: "*", element: <PageNotFound /> },
   ]);
 
